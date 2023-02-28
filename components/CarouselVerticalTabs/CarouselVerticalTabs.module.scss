@@ -1,0 +1,88 @@
+@use '../../styles/settings/index.scss' as *;
+
+.margin {
+    padding: 2rem;
+}
+
+.slick-list {
+    height: auto;
+}
+
+.slick-slide {
+    width: auto;
+}
+
+.carousel-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.carousel-active,
+.carousel-faded {
+    height: 10rem;
+    // width: 30%;
+    flex-grow: 1;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.carousel-faded {
+    background-color: $white-primary;
+}
+
+.carousel-active {
+    background-color: $grey-primary;
+}
+
+.grid {
+    margin: 0 2rem;
+
+    .carousel {
+        width: 100%;
+    }
+
+    .tab {
+        // <row-start> / <column-start> / <row-end> / <column-end>
+        background-color: $white-primary;
+        height: 100%;
+        width: 100%;
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@include gt-sm {
+    .carousel-container{
+        display: flex;
+        flex-direction: column;
+        // flex-wrap: wrap;
+    }
+    .grid {
+        display: grid;
+        margin: 0 2rem;
+        place-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+
+        .carousel {
+            grid-area: 1 / 1 / 2 / 2;
+
+            .carousel-active,
+            .carousel-faded {
+                height: 10rem;
+            }
+        }
+
+        .tab {
+            grid-area: 1 / 2 / 2 / 3;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

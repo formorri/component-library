@@ -1,0 +1,17 @@
+@use 'settings/index.scss' as *;
+
+
+.section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &:nth-child(even){
+        background-color: $white-primary;
+    }
+    &:nth-child(odd){
+        background-color: $grey-primary;
+    }
+}
