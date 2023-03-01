@@ -3,7 +3,8 @@ import Carousel from './Carousel';
 import CarouselVertical from './CarouselVertical';
 import CarouselVerticalTabs from './CarouselVerticalTabs';
 import Navbar1 from './Navbar1';
-import Tab1 from './Tab1';
+import TabType from './TabType';
+import TabSwitcher from './TabSwitcher';
 import Card from './Card';
 
 export {
@@ -11,6 +12,7 @@ export {
     CarouselVertical,
     CarouselVerticalTabs,
     Navbar1,
-    Tab1,
+    TabType,
+    TabSwitcher,
     Card
 }

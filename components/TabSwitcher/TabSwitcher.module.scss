@@ -1,0 +1,30 @@
+@use '../../styles/settings/index.scss' as *;
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.switch {
+    width: 160px;
+    height: 100px;
+    background-color: $white-primary;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.switch[data-isOn="true"] {
+    justify-content: flex-end;
+}
+
+.handle {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 40px;
+}
