@@ -1,6 +1,7 @@
 import styles from './TabSwitcher.module.scss';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { style } from '@mui/system';
 
 const spring = {
   type: "spring",
@@ -8,36 +9,40 @@ const spring = {
   damping: 30
 };
 
-const TabSwitcher = ({tabData}) => {
-  const [activeTab, setActiveTab] = useState(false);
-  const [activeContent, setActiveContent] = useState(0);
-  // when toggleSwitch, active tab change to false
+const TabSwitcher = ({ tabSwitcherData }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
   const toggleSwitch = (index) => {
-    setActiveTab(!activeTab);
-    setActiveContent(index);
+    setActiveTab(index);
   }
 
-  const content = tabData[activeTab].content;
+  const content = activeTab === 1 ? tabSwitcherData[1].content : tabSwitcherData[0].content;
+  const label = activeTab === 1 ? tabSwitcherData[1].label : tabSwitcherData[0].label;
 
   return (
     <div className={styles.container}>
-      <div>Tab with switcher</div>
-      {tabData.map((item, index) => (
-        <div className={styles.switch} data-isOn={activeTab} onClick={toggleSwitch}>
+      <div>Tab as Switcher</div>
+      <div className={styles.wrapper}>
+        <div
+          className={styles.switch}
+          data-isOn={activeTab === 1 ? "true" : "false"}
+          onClick={() => toggleSwitch(activeTab === 0 ? 1 : 0)}
+        >
+          <div className={styles['switch-text']}>
+            {label}
+          </div>
           <motion.div
-            key={index}
-            className={`${styles.handle} ${activeTab === index ? styles.active : ''}`}
+            className={`${styles.handle} ${activeTab === 1 ? styles.active : ''}`}
             layout
             transition={spring}
           >
-            {item.label}
           </motion.div>
         </div>
-      ))}
+      </div>
       <AnimatePresence exitBeforeEnter>
         <motion.div
           className={styles.content}
-          key={activeContent}
+          key={activeTab}
           initial={{ x: 10, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -10, opacity: 0 }}
@@ -47,7 +52,7 @@ const TabSwitcher = ({tabData}) => {
         </motion.div>
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default TabSwitcher
+export default TabSwitcher;

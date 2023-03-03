@@ -4,42 +4,46 @@ import Link from 'next/link';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger.js";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Navbar1 = ({ children }) => {
   const sections = ['home', 'highlights', 'messages', 'performance', 'value', 'downloads'];
   const [active, setActive] = useState('home');
+
   useEffect(() => {
-    sections.forEach(section => {
+    sections.forEach((section) => {
       ScrollTrigger.create({
         trigger: `#${section}`,
-        start: "top top",
-        end: "bottom bottom",
+        start: "top center",
+        end: "bottom center",
+        // toggleActions: "play none none reset",
         onEnter: () => setActive(section),
+        onLeave: () => setActive(section),
         onEnterBack: () => setActive(section),
-        markers: true
+        onLeaveBack: () => setActive(section),
+        markers: true,
       });
     });
   }, []);
 
   return (
     <div>
-      <navbar className={styles.container}>
-        {sections.map((item, index) => (
-          <ul key={index}>
+      <nav className={styles.container}>
+        {sections.map((item) => (
+          <ul key={item}>
             <li
-              active={active}
               className={active === item ? styles.active : styles.link}
             >
-              <Link href={`#${item}`}>{item}</Link>
+              <a
+                href={`#${item}`}
+              >{item}</a>
             </li>
           </ul>
         ))}
-      </navbar>
+      </nav>
       {children}
     </div>
   );
-}
+};
 
 export default Navbar1;

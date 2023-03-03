@@ -1,0 +1,11 @@
+@use '../../styles/settings/index.scss' as *;
+
+.container{
+    padding: 2rem;
+    background-color: $white-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius;
+    margin: 0.5rem;
+}
