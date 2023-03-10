@@ -1,33 +1,21 @@
 import styles from './Motion1.module.scss';
 import React from 'react'
 import { motion } from 'framer-motion';
-import { windowDimensions } from '../../hooks';
+import { useWindowSize } from 'react-use';
 
 const Motion1 = ({ children }) => {
-  const { height, width } = windowDimensions();
+  const { width } = useWindowSize();
 
-  const isMobile = width < 768; // adjust breakpoint as needed
-  const x = isMobile ? undefined : [50, 0];
-  const y = isMobile ? [50, 0] : undefined;
-
-  const variants = {
-    desktop: {
-      x,
-      opacity: [0, 1],
-      transition: { duration: 0.8 }
-    },
-    mobile: {
-      y,
-      opacity: [0, 1],
-      transition: { duration: 0.8 }
-    }
+  const whileInView = {
+    x: width > 768 ? [50, 0] : 0,
+    y: width <= 768 ? [50, 0] : 0,
+    opacity: [0, 1],
   };
 
   return (
     <motion.div
-      variants={variants}
-      initial="hidden"
-      animate="visible"
+      whileInView={whileInView}
+      transition={{ duration: 0.8 }}
       className={styles.container}
     >
       {children}

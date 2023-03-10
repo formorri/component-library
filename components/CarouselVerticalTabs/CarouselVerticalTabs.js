@@ -1,61 +1,23 @@
 import styles from './CarouselVerticalTabs.module.scss';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
-
-const ArrowPosition = '25vw';
-
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{
-                ...style,
-                display: 'block',
-                background: 'black',
-                top: '100%',
-                left: ArrowPosition,
-                transform: 'rotate(90deg)',
-                zIndex: 10
-            }}
-            onClick={onClick}
-        />
-    );
-}
-
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{
-                ...style,
-                display: 'block',
-                background: 'black',
-                top: '0%',
-                left: ArrowPosition,
-                transform: 'rotate(90deg)',
-                zIndex: 10
-            }}
-            onClick={onClick}
-        />
-    );
-}
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const CarouselVerticalTabs = ({ carouselData }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-
+    const slider = useRef(null);
     const settings = {
         dots: false,
         infinite: true,
+        arrows: false,
         speed: 0,
+        initialSlide: 0,
         slidesToShow: 1,
         slidesToScroll: 1,
-        initialSlide: 0,
         vertical: true,
         verticalSwiping: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
         beforeChange: function (currentSlide, nextSlide) {
             console.log('before change', currentSlide, nextSlide);
         },
@@ -70,7 +32,7 @@ const CarouselVerticalTabs = ({ carouselData }) => {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    vertical: false,
+                    vertical: false, // Set vertical to false explicitly
                     verticalSwiping: false,
                 }
             },
@@ -81,24 +43,27 @@ const CarouselVerticalTabs = ({ carouselData }) => {
         <div>
             <h2>Vertical Carousel as Tabs</h2>
             <div className={styles['grid']}>
-                <Slider {...settings} className={styles.carousel}>
-                    {carouselData.map((item, index) => (
-                        <div key={index}>
-                        <div className={styles['carousel-container']}>
-
-                            <div className={styles['carousel-faded']}>
-                                {carouselData[(index - 1 + carouselData.length) % carouselData.length].content}
+                <div className={styles.wrapper}>
+                    <ArrowUpwardIcon className={`${styles.previous} ${styles.arrow}`} onClick={() => slider?.current?.slickPrev()}></ArrowUpwardIcon>
+                    <Slider ref={slider} {...settings} className={styles.carousel}>
+                        {carouselData.map((item, index) => (
+                            <div key={index}>
+                                <div className={styles['carousel-container']}>
+                                    <div className={styles['carousel-faded']}>
+                                        {carouselData[(index - 1 + carouselData.length) % carouselData.length].content}
+                                    </div>
+                                    <div className={styles['carousel-active']}>
+                                        {item.content}
+                                    </div>
+                                    <div className={styles['carousel-faded']}>
+                                        {carouselData[(index + 1) % carouselData.length].content}
+                                    </div>
+                                </div>
                             </div>
-                            <div className={styles['carousel-active']}>
-                                {item.content}
-                            </div>
-                            <div className={styles['carousel-faded']}>
-                                {carouselData[(index + 1) % carouselData.length].content}
-                            </div>
-                        </div>
-                        </div>
-                    ))}
-                </Slider>
+                        ))}
+                    </Slider>
+                    <ArrowDownwardIcon className={`${styles.next} ${styles.arrow}`} onClick={() => slider?.current?.slickNext()}></ArrowDownwardIcon>
+                </div>
                 <div className={styles.tab}>
                     {carouselData[currentIndex].tabContent}
                 </div>

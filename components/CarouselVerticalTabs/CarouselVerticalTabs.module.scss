@@ -4,15 +4,30 @@
     padding: 2rem;
 }
 
-.slick-list {
-    height: auto;
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.slick-slide {
-    width: auto;
+.arrow {
+    background-color: $color-1;
+    border-radius: 100%;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+    transform: rotate(270deg);
 }
 
-.carousel-container{
+.next{
+    margin-left: -1.5rem;
+}
+.previous{
+    margin-right: -1.5rem;
+}
+
+
+.carousel-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -21,7 +36,6 @@
 .carousel-active,
 .carousel-faded {
     height: 10rem;
-    // width: 30%;
     flex-grow: 1;
     border-radius: $border-radius;
     display: flex;
@@ -31,11 +45,11 @@
 }
 
 .carousel-faded {
-    background-color: $white-primary;
+    background-color: $white-1;
 }
 
 .carousel-active {
-    background-color: $grey-primary;
+    background-color: $grey-1;
 }
 
 .grid {
@@ -47,9 +61,8 @@
 
     .tab {
         // <row-start> / <column-start> / <row-end> / <column-end>
-        background-color: $white-primary;
-        height: 100%;
-        width: 100%;
+        background-color: $white-1;
+        height: 10rem;
         border-radius: $border-radius;
         display: flex;
         align-items: center;
@@ -58,20 +71,37 @@
 }
 
 @include gt-sm {
-    .carousel-container{
+    .carousel-container {
         display: flex;
         flex-direction: column;
-        // flex-wrap: wrap;
     }
+
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .arrow {
+        transform: rotate(0deg);
+    }
+    
+    .next{
+        margin-left: 0rem;
+    }
+    .previous{
+        margin-right: 0rem;
+    }
+    
+
     .grid {
         display: grid;
         margin: 0 2rem;
         place-items: center;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: auto 1fr;
         grid-template-rows: auto;
 
         .carousel {
             grid-area: 1 / 1 / 2 / 2;
+            max-width: 48vw;
 
             .carousel-active,
             .carousel-faded {

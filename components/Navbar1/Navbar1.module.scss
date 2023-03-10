@@ -19,9 +19,9 @@ $size: 10px;
     align-items: center;
     
     a {
-        color: $dark-primary;
+        color: $dark-1;
         transition: $transition-buttons;
-        background-color: $white-primary;
+        background-color: $white-1;
         padding: 5px 15px;
         border-radius: $border-radius;
         text-decoration: none;
@@ -42,12 +42,12 @@ $size: 10px;
     &:hover {
         text-decoration: none;
         &::before {
-            background-color: $color-primary;
+            background-color: $color-1;
         }
         
         a {
-            color: $dark-primary;
-            background-color: $color-primary;
+            color: $dark-1;
+            background-color: $color-1;
         }
     }
 }
@@ -60,8 +60,8 @@ $size: 10px;
     align-items: center;
     
     a {
-        color: $dark-primary;
-        background-color: $color-primary;
+        color: $dark-1;
+        background-color: $color-1;
         padding: 5px 15px;
         border-radius: $border-radius;
         text-decoration: none;
@@ -70,7 +70,7 @@ $size: 10px;
     &::before {
         $size: 10px;
         content: '';
-        background-color: $color-primary;
+        background-color: $color-1;
         display: block;
         width: $size;
         height: calc($size * 0.9);

@@ -25,7 +25,7 @@ const TabSwitcher = ({ tabSwitcherData }) => {
       <div className={styles.wrapper}>
         <div
           className={styles.switch}
-          data-isOn={activeTab === 1 ? "true" : "false"}
+          data-ison={activeTab === 1 ? "true" : "false"}
           onClick={() => toggleSwitch(activeTab === 0 ? 1 : 0)}
         >
           <div className={styles['switch-text']}>

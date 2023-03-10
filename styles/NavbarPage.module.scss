@@ -9,9 +9,9 @@
     justify-content: center;
     
     &:nth-child(even){
-        background-color: $white-primary;
+        background-color: $white-1;
     }
     &:nth-child(odd){
-        background-color: $grey-primary;
+        background-color: $grey-1;
     }
 }

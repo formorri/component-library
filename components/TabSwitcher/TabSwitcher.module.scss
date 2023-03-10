@@ -24,7 +24,7 @@ $width: 20rem;
 .switch {
     width: $width;
     height: calc($size / 1.6);
-    background-color: $white-primary;
+    background-color: $white-1;
     display: flex;
     justify-content: flex-start;
     border-radius: 50px;
@@ -33,9 +33,9 @@ $width: 20rem;
     margin: 1rem;
 }
 
-.switch[data-isOn="true"] {
+.switch[data-ison="true"] {
     justify-content: flex-end;
-    background-color: $grey-primary;
+    background-color: $grey-1;
 }
 
 .handle {
@@ -48,7 +48,7 @@ $width: 20rem;
 .content{
     width: 100%;
     height: 20rem;
-    background-color: $white-primary;
+    background-color: $white-1;
     border-radius: $border-radius;
     display: flex;
     justify-content: center;

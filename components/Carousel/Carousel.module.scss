@@ -3,3 +3,22 @@
 .margin{
     padding: 2rem;
 }
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100vw;
+    justify-content: center;
+}
+
+.slider{
+    padding: 2rem;
+    max-width: 92vw;
+}
+.arrow{
+    background-color: $color-1;
+    border-radius: 100%;
+    color: white;
+    cursor: pointer;
+}

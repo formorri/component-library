@@ -1,30 +1,11 @@
 import styles from './Carousel.module.scss';
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
-
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black", right: "1rem", zIndex:10 }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "black", left: "1rem", zIndex:10 }}
-        onClick={onClick}
-      />
-    );
-  }
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Carousel = ({ children }) => {
+    const slider = useRef(null);
     const settings = {
         dots: true,
         infinite: false,
@@ -32,8 +13,7 @@ const Carousel = ({ children }) => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        arrows: false,
         autoplay: true,
         autoplaySpeed: 3000,
         responsive: [
@@ -70,9 +50,14 @@ const Carousel = ({ children }) => {
     return (
         <div>
             <h2>Horizontal Carousel</h2>
-            <Slider {...settings} className={styles.margin}>
-                {children}
-            </Slider>
+            <div className={styles.wrapper}>
+
+                <ArrowBackIcon className={styles.arrow} onClick={() => slider?.current?.slickPrev()}></ArrowBackIcon>
+                <Slider ref={slider} {...settings} className={styles.slider}>
+                    {children}
+                </Slider>
+                <ArrowForwardIcon className={styles.arrow} onClick={() => slider?.current?.slickNext()}></ArrowForwardIcon>
+            </div>
         </div>
     );
 }
