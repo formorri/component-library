@@ -1,0 +1,35 @@
+@use '../../styles/settings/index.scss' as *;
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper {
+    width: 30%;
+    margin: 1rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    background-color: $white-1;
+}
+
+.arrow-active {
+    transform: rotate(270deg);
+}
+
+.content {
+    display: none;
+    opacity: 0;
+    transition: ease-in-out 1s;
+}
+
+.content-active {
+    transition: ease-in-out 1s;
+    display: block;
+    opacity:1;
+}

@@ -6,13 +6,13 @@ import { CardStack1 } from '../components'
 const cardData = [
   {
     key: 0,
-    color:'#958AF5',
+    color: '#958AF5',
     header: 'Card 1',
     text: 'Sint reprehenderit labore enim officia tempor reprehenderit qui excepteur culpa cupidatat non.',
   },
   {
     key: 1,
-    color:'#AFFC41',
+    color: '#AFFC41',
     header: 'Card 2',
     text: 'Sint reprehenderit labore enim officia tempor reprehenderit qui excepteur culpa cupidatat non.',
   },
@@ -30,7 +30,7 @@ const cardData = [
   },
 ]
 
-const cardstack = () => {
+export default function cardstackPage() {
   return (
     <div className={styles.container}>
       <div>Card Stack</div>
@@ -38,5 +38,3 @@ const cardstack = () => {
     </div>
   )
 }
-
-export default cardstack

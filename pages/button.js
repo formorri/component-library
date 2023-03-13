@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Button.module.scss'
 import { Button1, Button2 } from '../components';
 
-const button = () => {
+export default function buttonPage() {
   return (
     <div className={styles.container}>
       <Button1 link='/' text='Button' backgroundColor='#958AF5' textColor='white'></Button1>
@@ -29,5 +29,3 @@ const button = () => {
     </div>
   )
 }
-
-export default button

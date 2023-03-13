@@ -108,7 +108,7 @@ const TabCircularData = [
 ]
 
 
-export default function Home() {
+export default function tabPage() {
   return (
     <div className={styles.container}>
       <Head>

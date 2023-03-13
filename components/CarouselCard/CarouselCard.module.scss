@@ -1,0 +1,39 @@
+@use '../../styles/settings/index.scss' as *;
+
+.container {
+    margin: 2rem;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    place-items: center;
+}
+
+
+.card {
+    grid-area: 1 / 1 / 2 / 2;
+    height: 30rem;
+    width: 100%;
+    // background-color: $color-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+    // &:nth-child(2)
+}
+
+.arrow{
+    // row column
+    grid-area: 2 / 1 / 3 / 2 ;
+}
+
+.tab{
+    grid-area: 1 / 2 / 3 / 3;
+    background-color: $white-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius;
+}

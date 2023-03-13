@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const CardStack1 = ({ cardData }) => {
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(3);
 
   const toggleActive = (index) => {
     setActive(active === index ? null : index);

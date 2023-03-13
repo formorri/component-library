@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar1 = ({ children }) => {
   const sections = ['home', 'highlights', 'messages', 'performance', 'value', 'downloads'];
   const [active, setActive] = useState('home');
+  const [navbarClass, setNavbarClass] = useState(false);
 
   useEffect(() => {
     sections.forEach((section) => {
@@ -16,7 +17,6 @@ const Navbar1 = ({ children }) => {
         trigger: `#${section}`,
         start: "top center",
         end: "bottom center",
-        // toggleActions: "play none none reset",
         onEnter: () => setActive(section),
         onLeave: () => setActive(section),
         onEnterBack: () => setActive(section),
@@ -26,20 +26,51 @@ const Navbar1 = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const transitionPoint = document.getElementById(sections[1]);
+      if (transitionPoint && window.scrollY >= transitionPoint.offsetTop) {
+        setNavbarClass(true);
+      } else {
+        setNavbarClass(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div>
-      <nav className={styles.container}>
-        {sections.map((item) => (
-          <ul key={item}>
+    <div className={styles.navbar}>
+      <nav className={`${styles['container-desktop']} ${navbarClass ? styles['container-desktop-active'] : ''}`}>
+        <ul>
+          {sections.map((item) => (
             <li
+              key={item}
               className={active === item ? styles.active : styles.link}
             >
               <a
                 href={`#${item}`}
               >{item}</a>
             </li>
-          </ul>
-        ))}
+          ))}
+        </ul>
+      </nav>
+      <nav className={styles['container-phone']}>
+        <ul>
+          {sections.map((item) => (
+            <li
+              key={item}
+              className={active === item ? styles.active : styles.link}
+            >
+              <a
+                href={`#${item}`}
+              ><div className={styles.text}>
+                  {item}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
       {children}
     </div>
