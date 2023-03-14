@@ -1,6 +1,6 @@
 import styles from '../styles/Carousel.module.scss'
 import Head from 'next/head'
-import { Doughnut1 } from '../chart'
+import Doughnut1 from '../chart/Doughnut1'
 
 const data = [
   { label: 'Red', value: 20 },
